@@ -35,14 +35,21 @@ namespace Prakt2
 
         private void btnFill_Click(object sender, RoutedEventArgs e)
         {
-            if (Int32.TryParse(tbNumbersCount.Text, out int n) && n > 0)
+            try
             {
-                lbNumbers.Items.Clear();
+                int n = Convert.ToInt32(tbNumbersCount.Text);
+                if (n > 0)
+                {
+                    lbNumbers.Items.Clear();
 
-                int[] numbers = Arrays.Fill(n);
-                for (int i = 0; i < numbers.Length; i++) lbNumbers.Items.Add(numbers[i]);
+                    int[] numbers = Arrays.Fill(n);
+                    for (int i = 0; i < numbers.Length; i++) lbNumbers.Items.Add(numbers[i]);
+                }
             }
-            else MessageBox.Show("Введите правильные значения", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            catch
+            {
+                MessageBox.Show("Введите правильные значения", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void btnCalc_Click(object sender, RoutedEventArgs e)
